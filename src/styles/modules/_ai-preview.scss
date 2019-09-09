@@ -1,0 +1,201 @@
+.ai-preview  {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 33%;
+  height: 100%;
+  z-index: 5;
+  transition: $basic-transition;
+  opacity: 0;
+
+  &--show {
+    opacity: 1.0;
+  }
+
+  .ai-preview-list {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    left: 6px;
+    top: 72px;
+    opacity: 0;
+    transition: $basic-transition;
+
+    .ai-preview-list-column {
+      border-radius: $border-radius 0 0 $border-radius;
+      position: relative;
+      min-width: 18px;
+      min-height: 100%;
+      background: rgba(darken($color-black, 10%), 0.55);
+      -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(darken($color-black, 10%),1)), to(rgba(darken($color-black, 10%),0)));
+
+      &:last-child {
+        transform: translateX(-29px);
+        border-radius: 0 $border-radius $border-radius 0;
+      }
+    }
+
+    .ai-preview-list-scrolling {
+      overflow-y: scroll;
+      height: 510px;
+      width: calc(100% - 12px);
+      -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(darken($color-black, 10%),1)), to(rgba(darken($color-black, 10%),0)));
+
+      &::-webkit-scrollbar {
+        width: 7px;
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 3px;
+        width: 7px;
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb:window-inactive {
+        background: transparent;
+      }
+
+      &:hover {
+        &::-webkit-scrollbar-thumb {
+          background: rgba($color-white, .18);
+        }
+      }
+    }
+  }
+
+  #toggleWikiPreview {
+    display: none;
+
+    ~label {
+      cursor: pointer;
+      width: 80px;
+      height: 36px;
+      border-radius: 36px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      border: solid 2px $color-white;
+      transition: border-color 0.6s $easing1;
+
+      span {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 30px;
+
+        color: $color-white;
+        display: inline-block;
+        transform: translateX(40px);
+      }
+
+      .circle {
+        top: -2px;
+        left: -2px;
+        width: 36px;
+        height: 36px;
+        border-radius: 36px;
+        border: solid 2px $color-white;
+        position: absolute;
+        transition: all 0.6s $easing2;
+      }
+    }
+
+    &:checked {
+      ~label {
+        border-color: $color-blue;
+
+        span {
+          color: $color-blue;
+          transform: translateX(10px);
+        }
+
+        .circle {
+          transform: translateX(44px);
+          border-color: $color-blue;
+        }
+
+        ~.ai-preview-list {
+          opacity: 1.0;
+        }
+      }
+    }
+  }
+
+  .ai-more {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    left: 120px;
+    height: 36px;
+
+    .divider {
+      width: 1px;
+      height: 18px;
+      background: rgba($color-white, .80);
+      margin-right: 20px;
+    }
+
+    span {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 36px;
+      text-transform: uppercase;
+      letter-spacing: 0.075em;
+      color: rgba($color-white, .80);
+      margin-right: 8px;
+      transition: all 0.2s $easing1; 
+    }
+
+    .ellipsis {
+      width: 6px;
+      height: 6px;
+      border-radius: 6px;
+      background: rgba($color-white, .55);
+      margin-right: 3px;
+      transition: all 0.3s $easing1; 
+      opacity: 0;
+
+      &:last-child {
+        margin: 0;
+      }
+
+      &:nth-child(5) {
+        transition-delay: 0.09s;
+      }
+
+      &:nth-child(4) {
+        transition-delay: 0.18s;
+      }
+
+      &:nth-child(3) {
+        transition-delay: 0.27s;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      span {
+        color: $color-white;
+      }
+      .ellipsis {
+        opacity: 1;
+        background-color: $color-white;
+
+        &:nth-child(3) {
+          transition-delay: 0.09s;
+        }
+
+        &:nth-child(4) {
+          transition-delay: 0.18s;
+        }
+
+        &:nth-child(5) {
+          transition-delay: 0.27s;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.idea
+.DS_Store
+node_modules
+build/assets/css/styles.css
+build/assets/js
+build/assets/fonts/icons*
+build
+package-lock.json
+*.orig
+*.map
+_icons.scss
